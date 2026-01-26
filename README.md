@@ -35,5 +35,5 @@ my-portfolio/
 I am currently **Open to Work** and actively seeking opportunities in Data Analytics, Business Intelligence, and Credit Risk.
 
 - Email: lgao28@jh.edu
-- LinkedIn: linkedin.com/in/lihong-gao
-- Blog: epiphany-leon.github.io/site_lih/
+- LinkedIn: [Lihong Gao](linkedin.com/in/lihong-gao)
+- Blog: [Lih'Log](epiphany-leon.github.io/site_lih/)
