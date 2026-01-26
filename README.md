@@ -4,7 +4,7 @@ Welcome to the repository for my personal professional portfolio website.
 
 This project showcases my background, skills, and projects as a **Data Analyst** specializing in **Machine Learning** and **Business Intelligence**.
 
-🔗 Live Demo: [Portfolio Website]()
+🔗 Live Demo: [Portfolio Website](https://lihong-gao-portfolio.vercel.app/)
 
 ## 🛠️ Tech Stack
 
