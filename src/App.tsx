@@ -43,7 +43,7 @@ const PERSONAL_INFO = {
   
   heroPhotoUrl: "/images/me.jpg", 
   
-  resumeUrl: "/files/Lihong_Gao_Resume.pdf", 
+  resumeUrl: "/files/Lihong_Gao_Data_Analyst.pdf", 
   
   blogUrl: "https://epiphany-leon.github.io/site_lih/",
   about: "I am a Business Analytics and Artificial Intelligence graduate student at Johns Hopkins University (GPA 3.81). My dual bachelor's degrees in Finance and Business Administration provide me with a strong framework for understanding the 'why' behind the data. I thrive on delivering measurable results and have hands-on experience in financial analysis, predictive modeling, and operational optimization."
@@ -650,7 +650,7 @@ export default function App() {
                     {/* [Change 2] Resume Download Link */}
                     <a 
                       href={PERSONAL_INFO.resumeUrl} 
-                      download="Lihong_Gao_Resume.pdf"
+                      download="Lihong_Gao_Data_Analyst.pdf"
                       className="w-full sm:w-auto bg-white text-slate-700 border border-slate-300 px-6 py-3 rounded-lg font-semibold hover:bg-slate-50 transition-colors flex items-center justify-center gap-2"
                     >
                       <Download size={18} /> Resume / CV
