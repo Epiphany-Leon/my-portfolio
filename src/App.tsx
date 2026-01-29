@@ -57,8 +57,9 @@ const CORE_SKILLS_DETAILS = [
     color: "blue",
     shortDesc: "Building AI credit models, LLM agents, and predictive frameworks using Python and Azure.",
     certifications: [
-      { name: "Microsoft Certified: Azure AI Fundamentals", issuer: "Microsoft", date: "2025" },
-      { name: "Machine Learning Specialization", issuer: "DeepLearning.AI", date: "2026" }
+      { name: "Microsoft Certified: Azure AI Fundamentals", issuer: "Microsoft", date: "Dec 2025" },
+      { name: "SAS AI Foundations Knowledge Badge", issuer: "SAS", date: "Dec 2025" },
+      { name: "Machine Learning Specialization", issuer: "DeepLearning.AI", date: "Jan 2026" }
     ],
     coursework: [
       { name: "Practical Machine Learning", grade: "In Progress", stack: ["Python", "Scikit-learn", "Google Colab"] },
@@ -73,8 +74,8 @@ const CORE_SKILLS_DETAILS = [
     color: "purple",
     shortDesc: "Visualizing KPIs, sales funnels, and operational metrics via Tableau and Excel Dashboards.",
     certifications: [
-      { name: "Presenting Data Effectively", issuer: "LinkedIn", date: "2025" },
-      { name: "Business Problem Framing", issuer: "INFORMS", date: "2026" }
+      { name: "Presenting Data Effectively", issuer: "LinkedIn", date: "Nov 2025" },
+      { name: "Business Problem Framing", issuer: "INFORMS", date: "Dec 2025" }
     ],
     coursework: [
       { name: "Data Visualization", grade: "A", stack: ["Tableau", "Storytelling"] },
@@ -89,8 +90,9 @@ const CORE_SKILLS_DETAILS = [
     color: "indigo",
     shortDesc: "Designing dynamic data pipelines and optimizing SQL queries for real-time analytics.",
     certifications: [
-      { name: "SAS SQL Essentials Badge", issuer: "SAS", date: "2025" },
-      { name: "Azure DevOps Services", issuer: "Microsoft", date: "2025" }
+      { name: "C Programming with Linux Specialization", issuer: "Coursera", date: "Jun 2024" },
+      { name: "SAS SQL Essentials Badge", issuer: "SAS", date: "Dec 2025" },
+      { name: "Azure DevOps Services", issuer: "Microsoft", date: "Dec 2025" }
     ],
     coursework: [
       { name: "Database Management", grade: "In Progress", stack: ["SQL", "Relational DB"] },
@@ -358,21 +360,21 @@ const GALLERY_PHOTOS = [
   },
   {
     id: 18,
-    date: "Aug 2026",
+    date: "Aug 2025",
     title: "JHU - Master's Journey",
     location: "Washington DC, USA",
     url: "/images/G_JHU_start.jpg" 
   },
   {
     id: 19,
-    date: "Nov 2026",
+    date: "Nov 2025",
     title: "Travel - New York City",
     location: "New York, USA",
     url: "/images/G_Travel_NYC.jpg" 
   },
   {
     id: 20,
-    date: "Dec 2026",
+    date: "Dec 2025",
     title: "Travel - Philadelphia",
     location: "Philadelphia, Pennsylvania, USA",
     url: "/images/G_Travel_Philadelphia.jpg" 
