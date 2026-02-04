@@ -1,10 +1,10 @@
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { 
   BarChart3, 
   Brain, 
   Database, 
   LineChart, 
-  // PieChart removed (unused)
+  PieChart, 
   Code2, 
   Briefcase, 
   GraduationCap, 
@@ -23,10 +23,10 @@ import {
   Feather,
   ExternalLink,
   Coffee,
-  // ShieldCheck removed (unused)
+  ShieldCheck,
   Github,
-  // Filter removed (unused)
-  // ArrowUpRight removed (unused)
+  Filter
+  // ArrowUpRight removed
 } from 'lucide-react';
 
 // --- CONFIGURATION & DATA ---
@@ -43,7 +43,7 @@ const PERSONAL_INFO = {
   
   heroPhotoUrl: "/images/me.jpg", 
   
-  resumeUrl: "/files/Lihong_Gao_Data_Analyst.pdf", 
+  resumeUrl: "/files/Lihong_Gao_Resume.pdf", 
   
   blogUrl: "https://epiphany-leon.github.io/site_lih/",
   about: "I am a Business Analytics and Artificial Intelligence graduate student at Johns Hopkins University (GPA 3.81). My dual bachelor's degrees in Finance and Business Administration provide me with a strong framework for understanding the 'why' behind the data. I thrive on delivering measurable results and have hands-on experience in financial analysis, predictive modeling, and operational optimization."
@@ -57,9 +57,8 @@ const CORE_SKILLS_DETAILS = [
     color: "blue",
     shortDesc: "Building AI credit models, LLM agents, and predictive frameworks using Python and Azure.",
     certifications: [
-      { name: "Microsoft Certified: Azure AI Fundamentals", issuer: "Microsoft", date: "Dec 2025" },
-      { name: "SAS AI Foundations Knowledge Badge", issuer: "SAS", date: "Dec 2025" },
-      { name: "Machine Learning Specialization", issuer: "DeepLearning.AI", date: "Jan 2026" }
+      { name: "Microsoft Certified: Azure AI Fundamentals", issuer: "Microsoft", date: "2025" },
+      { name: "Machine Learning Specialization", issuer: "DeepLearning.AI", date: "2026" }
     ],
     coursework: [
       { name: "Practical Machine Learning", grade: "In Progress", stack: ["Python", "Scikit-learn", "Google Colab"] },
@@ -74,8 +73,8 @@ const CORE_SKILLS_DETAILS = [
     color: "purple",
     shortDesc: "Visualizing KPIs, sales funnels, and operational metrics via Tableau and Excel Dashboards.",
     certifications: [
-      { name: "Presenting Data Effectively", issuer: "LinkedIn", date: "Nov 2025" },
-      { name: "Business Problem Framing", issuer: "INFORMS", date: "Dec 2025" }
+      { name: "Presenting Data Effectively", issuer: "LinkedIn", date: "2025" },
+      { name: "Business Problem Framing", issuer: "INFORMS", date: "2026" }
     ],
     coursework: [
       { name: "Data Visualization", grade: "A", stack: ["Tableau", "Storytelling"] },
@@ -90,9 +89,8 @@ const CORE_SKILLS_DETAILS = [
     color: "indigo",
     shortDesc: "Designing dynamic data pipelines and optimizing SQL queries for real-time analytics.",
     certifications: [
-      { name: "C Programming with Linux Specialization", issuer: "Coursera", date: "Jun 2024" },
-      { name: "SAS SQL Essentials Badge", issuer: "SAS", date: "Dec 2025" },
-      { name: "Azure DevOps Services", issuer: "Microsoft", date: "Dec 2025" }
+      { name: "SAS SQL Essentials Badge", issuer: "SAS", date: "2025" },
+      { name: "Azure DevOps Services", issuer: "Microsoft", date: "2025" }
     ],
     coursework: [
       { name: "Database Management", grade: "In Progress", stack: ["SQL", "Relational DB"] },
@@ -103,8 +101,57 @@ const CORE_SKILLS_DETAILS = [
   }
 ];
 
-// PROJECTS Data with Styles but NO External Links
+// PROJECTS Data - Organized into 4 Main Categories
+// Categories: "AI & Automation", "Quantitative Analysis", "Business Intelligence", "Risk Management"
 const PROJECTS = [
+  {
+    id: 9, // New Project
+    title: "SnapHomz Rental Data Pipeline",
+    category: "AI & Automation",
+    summary: "Built a full-stack data pipeline using FastAPI and Selenium to scrape, clean, and serve rental listing data. Designed a normalized PostgreSQL database schema to store property details and exposed RESTful APIs for frontend consumption.",
+    tools: ["Python (FastAPI)", "Selenium", "PostgreSQL", "Data Engineering"],
+    impact: "Automated the aggregation of rental listings, reducing manual data entry time by 90% and enabling real-time property search capabilities.",
+    styles: {
+      strip: "bg-purple-600",
+      impactBox: "border-purple-600 bg-purple-50"
+    }
+  },
+  {
+    id: 7, 
+    title: "Global Supply Chain Network Optimization",
+    category: "Quantitative Analysis",
+    summary: "Modeled a multi-echelon supply chain using Mixed-Integer Linear Programming (MILP) in Python. Conducted 500 Monte Carlo simulations to stress-test network robustness against demand volatility in 5 global markets.",
+    tools: ["Python (PuLP)", "Monte Carlo Simulation", "Optimization", "Sensitivity Analysis"],
+    impact: "Identified optimal facility configurations (USA/Japan High Capacity) with 100% robustness and quantified cost risks ($6M std dev) to guide strategic investment.",
+    styles: {
+      strip: "bg-cyan-600",
+      impactBox: "border-cyan-600 bg-cyan-50"
+    }
+  },
+  {
+    id: 8,
+    title: "Fuel Inventory & Investment Analysis",
+    category: "Quantitative Analysis",
+    summary: "Analyzed gas station inventory data using Python to evaluate shortage risks. Developed a financial model calculating Net Present Value (NPV) and ROI to assess the viability of installing new storage tanks.",
+    tools: ["Python (Pandas/NumPy)", "Financial Modeling (NPV/ROI)", "Inventory Optimization"],
+    impact: "Determined a positive ROI (30.6% NPV) for new tank investments and established optimal reorder thresholds to minimize operational disruption.",
+    styles: {
+      strip: "bg-teal-500",
+      impactBox: "border-teal-500 bg-teal-50"
+    }
+  },
+  {
+    id: 6, 
+    title: "Digital Wellness & Lifestyle Analysis",
+    category: "Quantitative Analysis", 
+    summary: "Analyzed 5,000+ survey responses using R to decouple the effects of screen time vs. lifestyle on mental health. Identified social media (>3.85h/day) as the primary stressor compared to gaming or work.",
+    tools: ["R", "Machine Learning (KNN/Trees)", "K-Means Clustering", "Regression"],
+    impact: "Segmented users into 3 personas (e.g., 'Heavy Social'), proving digital modality matters more than total duration for wellness interventions.",
+    styles: {
+      strip: "bg-indigo-500", 
+      impactBox: "border-indigo-500 bg-indigo-50"
+    }
+  },
   {
     id: 1,
     title: "Local LLM Deployment & Agentic AI",
@@ -118,9 +165,21 @@ const PROJECTS = [
     }
   },
   {
+    id: 0,
+    title: "Customer Shopping Behavior Analysis",
+    category: "Business Intelligence", 
+    summary: "Analyzed transactional data using Tableau to decode shopping patterns. Identified Fall as the peak season and profiled the core demographic (Male, 30-59) to drive targeted marketing.",
+    tools: ["Tableau", "Data Storytelling", "Consumer Profiling"],
+    impact: "Formulated 4 strategic recommendations for inventory planning and geo-targeted campaigns based on seasonal and regional insights.",
+    styles: {
+      strip: "bg-orange-500",
+      impactBox: "border-orange-500 bg-orange-50"
+    }
+  },
+  {
     id: 2,
     title: "SME Financing Statistical Modeling",
-    category: "Statistical Analysis",
+    category: "Quantitative Analysis",
     summary: "Orchestrated full-cycle research in R to optimize credit risk assessment frameworks by implementing ML on 50,000+ transaction records.",
     tools: ["R", "Machine Learning", "Big Data"],
     impact: "Validated a 25% efficiency gain in SME financing strategies through full-cycle research.",
@@ -156,7 +215,7 @@ const PROJECTS = [
   {
     id: 5,
     title: "AIA International Finance Research",
-    category: "Financial Modeling",
+    category: "Quantitative Analysis", 
     summary: "Modeled HK offshore market dynamics by regressing macro-indicators like RMB index and exchange rates via Granger causality tests.",
     tools: ["Regression Analysis", "Econometrics", "Macro-indicators"],
     impact: "Substantiated the correlation between RMB internationalization and market development.",
@@ -360,21 +419,21 @@ const GALLERY_PHOTOS = [
   },
   {
     id: 18,
-    date: "Aug 2025",
+    date: "Aug 2026",
     title: "JHU - Master's Journey",
     location: "Washington DC, USA",
     url: "/images/G_JHU_start.jpg" 
   },
   {
     id: 19,
-    date: "Nov 2025",
+    date: "Nov 2026",
     title: "Travel - New York City",
     location: "New York, USA",
     url: "/images/G_Travel_NYC.jpg" 
   },
   {
     id: 20,
-    date: "Dec 2025",
+    date: "Dec 2026",
     title: "Travel - Philadelphia",
     location: "Philadelphia, Pennsylvania, USA",
     url: "/images/G_Travel_Philadelphia.jpg" 
@@ -599,7 +658,7 @@ const Gallery = () => {
 }
 
 const ProjectFilter = ({ activeCategory, onFilter }: any) => {
-  const categories = ["All", "AI & Automation", "Statistical Analysis", "Business Intelligence", "Risk Management"];
+  const categories = ["All", "AI & Automation", "Quantitative Analysis", "Business Intelligence", "Risk Management"];
   
   return (
     <div className="flex flex-wrap gap-2 mb-6">
