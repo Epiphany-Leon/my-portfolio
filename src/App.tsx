@@ -1,10 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { 
   BarChart3, 
   Brain, 
   Database, 
   LineChart, 
-  PieChart, 
+  // PieChart, 
   Code2, 
   Briefcase, 
   GraduationCap, 
@@ -23,9 +23,9 @@ import {
   Feather,
   ExternalLink,
   Coffee,
-  ShieldCheck,
+  // ShieldCheck,
   Github,
-  Filter
+  // Filter
   // ArrowUpRight removed
 } from 'lucide-react';
 
