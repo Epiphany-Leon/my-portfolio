@@ -1,10 +1,9 @@
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { 
   BarChart3, 
   Brain, 
   Database, 
   LineChart, 
-  // PieChart, 
   Code2, 
   Briefcase, 
   GraduationCap, 
@@ -23,11 +22,12 @@ import {
   Feather,
   ExternalLink,
   Coffee,
-  // ShieldCheck,
   Github,
-  // Filter,
-  Maximize2, // New icon for expand indication
-  CheckCircle2 // Icon for results
+  Maximize2,
+  CheckCircle2,
+  ArrowLeft,
+  FileText,
+  Image as ImageIcon
 } from 'lucide-react';
 
 // --- CONFIGURATION & DATA ---
@@ -102,7 +102,7 @@ const CORE_SKILLS_DETAILS = [
   }
 ];
 
-// PROJECTS Data - Enhanced with 'details', 'results', and 'githubLink'
+// PROJECTS Data - Added 'text' and 'bg' to styles for full page view
 const PROJECTS = [
   {
     id: 9, 
@@ -121,19 +121,20 @@ const PROJECTS = [
     styles: {
       strip: "bg-purple-600",
       impactBox: "border-purple-600 bg-purple-50",
-      text: "text-purple-600"
+      text: "text-purple-600",
+      bg: "bg-purple-50"
     }
   },
   {
-    id: 10, 
+    id: 7, 
     title: "Global Supply Chain Network Optimization",
     category: "Quantitative Analysis",
-    summary: "Modeled a multi-echelon supply chain using Mixed-Integer Linear Programming (MILP) and Monte Carlo simulation.",
+    summary: "Modeled a multi-echelon supply chain using Mixed-Integer Linear Programming (MILP) in Python.",
     details: "Addressed a strategic facility location problem for a global electronics manufacturer (PrecisionLink). Formulated a Mixed-Integer Linear Programming (MILP) model using the PuLP library to minimize total costs (fixed + variable). To account for market volatility, I conducted 500 Monte Carlo simulation iterations, modeling demand as normal distributions based on forecasted data.",
     results: [
       "Identified that High-Capacity factories in USA and Japan have a 100% robustness score (opening probability).",
       "Quantified financial risk with a Mean Total Cost of $92.6M and a Standard Deviation of $6.0M.",
-      "Provided data-driven recommendations to prioritize expansion in stable markets while maintaining flexible capacity in emerging ones."
+      "Provided data-driven recommendations to prioritize expansion in stable markets."
     ],
     tools: ["Python (PuLP)", "Monte Carlo Simulation", "Optimization", "Sensitivity Analysis"],
     impact: "Identified optimal facility configurations with 100% robustness and quantified cost risks to guide strategic investment.",
@@ -141,7 +142,8 @@ const PROJECTS = [
     styles: {
       strip: "bg-cyan-600",
       impactBox: "border-cyan-600 bg-cyan-50",
-      text: "text-cyan-600"
+      text: "text-cyan-600",
+      bg: "bg-cyan-50"
     }
   },
   {
@@ -149,7 +151,7 @@ const PROJECTS = [
     title: "Fuel Inventory & Investment Analysis",
     category: "Quantitative Analysis",
     summary: "Analyzed gas station inventory data and developed a financial model (NPV/ROI) for investment assessment.",
-    details: "Performed a comprehensive analysis of fuel inventory management practices using Python. The project involved data cleaning of daily transaction logs, detecting shortage patterns, and simulating the operational impact of adding new storage tanks. I built a financial model to calculate Net Present Value (NPV) and Return on Investment (ROI) over a 5-year horizon to justify capital expenditure.",
+    details: "Performed a comprehensive analysis of fuel inventory management practices using Python. The project involved data cleaning of daily transaction logs, detecting shortage patterns, and simulating the operational impact of adding new storage tanks. I built a financial model to calculate Net Present Value (NPV) and Return on Investment (ROI) over a 5-year horizon.",
     results: [
       "Calculated a positive NPV Return on Investment of 30.6% for new tank investments.",
       "Identified optimal reorder points that reduce stockout events by approximately 40%.",
@@ -161,7 +163,8 @@ const PROJECTS = [
     styles: {
       strip: "bg-teal-500",
       impactBox: "border-teal-500 bg-teal-50",
-      text: "text-teal-600"
+      text: "text-teal-600",
+      bg: "bg-teal-50"
     }
   },
   {
@@ -181,7 +184,8 @@ const PROJECTS = [
     styles: {
       strip: "bg-indigo-500", 
       impactBox: "border-indigo-500 bg-indigo-50",
-      text: "text-indigo-600"
+      text: "text-indigo-600",
+      bg: "bg-indigo-50"
     }
   },
   {
@@ -200,7 +204,8 @@ const PROJECTS = [
     styles: {
       strip: "bg-purple-500",
       impactBox: "border-purple-500 bg-purple-50",
-      text: "text-purple-600"
+      text: "text-purple-600",
+      bg: "bg-purple-50"
     }
   },
   {
@@ -220,7 +225,8 @@ const PROJECTS = [
     styles: {
       strip: "bg-orange-500",
       impactBox: "border-orange-500 bg-orange-50",
-      text: "text-orange-600"
+      text: "text-orange-600",
+      bg: "bg-orange-50"
     }
   },
   {
@@ -239,7 +245,8 @@ const PROJECTS = [
     styles: {
       strip: "bg-indigo-500",
       impactBox: "border-indigo-500 bg-indigo-50",
-      text: "text-indigo-600"
+      text: "text-indigo-600",
+      bg: "bg-indigo-50"
     }
   },
   {
@@ -258,7 +265,8 @@ const PROJECTS = [
     styles: {
       strip: "bg-blue-500",
       impactBox: "border-blue-500 bg-blue-50",
-      text: "text-blue-600"
+      text: "text-blue-600",
+      bg: "bg-blue-50"
     }
   },
   {
@@ -277,7 +285,8 @@ const PROJECTS = [
     styles: {
       strip: "bg-emerald-500",
       impactBox: "border-emerald-500 bg-emerald-50",
-      text: "text-emerald-600"
+      text: "text-emerald-600",
+      bg: "bg-emerald-50"
     }
   },
   {
@@ -285,7 +294,7 @@ const PROJECTS = [
     title: "AIA International Finance Research",
     category: "Quantitative Analysis", 
     summary: "Modeled HK offshore market dynamics by regressing macro-indicators like RMB index.",
-    details: "Conducted econometric research on the Hong Kong offshore RMB market. Collected time-series data on exchange rates, RMB index, and trade volumes. Applied Granger Causality tests and regression analysis to determine the directional relationship between RMB internationalization and market liquidity.",
+    details: "Conducted econometric research on the Hong Kong offshore RMB market. Collected time-series data on exchange rates, RMB index, and trade volumes. Applied Granger Causality tests and Regression Analysis to determine directional relationships.",
     results: [
       "Substantiated a positive correlation between policy liberalization and market development.",
       "Identified lag effects in how exchange rate volatility impacts offshore deposits.",
@@ -296,7 +305,8 @@ const PROJECTS = [
     styles: {
       strip: "bg-slate-500",
       impactBox: "border-slate-500 bg-slate-50",
-      text: "text-slate-600"
+      text: "text-slate-600",
+      bg: "bg-slate-50"
     }
   }
 ];
@@ -524,116 +534,176 @@ const GALLERY_PHOTOS = [
 
 // --- COMPONENTS ---
 
-// Project Detail Modal
-const ProjectDetailModal = ({ project, onClose }: any) => {
+// Full-Page Project Detail View
+const ProjectDetailView = ({ project, onBack }: any) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   if (!project) return null;
 
   return (
-    <div className="fixed inset-0 z-[70] flex items-center justify-center p-4">
-      {/* Backdrop */}
-      <div 
-        className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-300"
-        onClick={onClose}
-      ></div>
+    <div className="fixed inset-0 z-50 bg-white overflow-y-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
       
-      {/* Modal Content */}
-      <div className="relative w-full max-w-3xl bg-white rounded-2xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300 flex flex-col max-h-[85vh]">
-        
-        {/* Header Strip */}
-        <div className={`h-3 w-full ${project.styles.strip}`}></div>
-
-        {/* Header Content */}
-        <div className="p-6 md:p-8 border-b border-slate-100 flex justify-between items-start bg-slate-50/30">
-          <div>
-            <span className={`text-[10px] font-bold tracking-wider uppercase px-2 py-1 rounded-full mb-3 inline-block ${project.styles.strip.replace('bg-', 'bg-opacity-10 text-').replace('text-', 'text-') + ' bg-opacity-10'}`}>
+      {/* 1. Header / Navigation */}
+      <div className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200">
+        <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+          <button 
+            onClick={onBack}
+            className="flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors group px-3 py-2 rounded-lg hover:bg-slate-50"
+          >
+            <div className="p-1 rounded-full group-hover:bg-slate-200/50 transition-colors">
+              <ArrowLeft size={20} />
+            </div>
+            <span className="font-medium">Back to Projects</span>
+          </button>
+          
+          <div className="flex items-center gap-2">
+            <span className={`text-[10px] font-bold tracking-wider uppercase px-3 py-1.5 rounded-full ${project.styles.strip.replace('bg-', 'text-').replace('text-', 'bg-opacity-10 bg-') + ' bg-opacity-10'}`}>
               {project.category}
             </span>
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">{project.title}</h2>
-            
-            {/* GitHub Link in Modal */}
-            {project.githubLink && (
-              <a 
-                href={project.githubLink}
-                target="_blank"
-                rel="noreferrer"
-                className={`inline-flex items-center gap-2 text-sm font-semibold hover:underline transition-colors ${project.styles.text}`}
-              >
-                <Github size={16} />
-                View Repository on GitHub
-              </a>
-            )}
           </div>
-          <button 
-            onClick={onClose}
-            className="p-2 bg-white rounded-full text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors shadow-sm"
-          >
-            <X size={20} />
-          </button>
+        </div>
+      </div>
+
+      {/* 2. Hero Content */}
+      <div className="max-w-5xl mx-auto px-6 py-12 md:py-16">
+        <div className="mb-12 border-b border-slate-100 pb-10">
+          <h1 className={`text-3xl md:text-5xl font-extrabold text-slate-900 mb-6 leading-tight`}>
+            {project.title}
+          </h1>
+          
+          {/* GitHub Button in Hero */}
+          {project.githubLink && (
+            <a 
+              href={project.githubLink}
+              target="_blank"
+              rel="noreferrer"
+              className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-white font-medium shadow-md hover:shadow-lg hover:brightness-110 transition-all transform hover:-translate-y-0.5 ${project.styles.strip}`}
+            >
+              <Github size={20} />
+              View on GitHub
+            </a>
+          )}
         </div>
 
-        {/* Scrollable Body */}
-        <div className="p-6 md:p-8 overflow-y-auto custom-scrollbar">
+        {/* 3. Main Content Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           
-          {/* Section: Overview */}
-          <div className="mb-8">
-            <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
-              <BookOpen size={20} className={project.styles.text} />
-              Project Overview
-            </h3>
-            <p className="text-slate-600 leading-relaxed">
-              {project.details || project.summary}
-            </p>
+          {/* Left Column: Context & Methods */}
+          <div className="md:col-span-2 space-y-12">
+            
+            {/* Context */}
+            <section>
+              <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                <BookOpen className={project.styles.text} size={24} />
+                Context & Objective
+              </h3>
+              <p className="text-slate-600 leading-relaxed text-lg">
+                {project.context || project.details || project.summary}
+              </p>
+            </section>
+
+            {/* Methodology */}
+            <section>
+              <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                <Layers className={project.styles.text} size={24} />
+                Methodology
+              </h3>
+              <p className="text-slate-600 leading-relaxed text-lg">
+                {project.methodology || "Details on the analytical approach and technical implementation..."}
+              </p>
+            </section>
+
+             {/* Visuals / Gallery Placeholder */}
+             <section>
+              <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                <ImageIcon className={project.styles.text} size={24} />
+                Project Gallery
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                 {/* Placeholder for future images */}
+                 <div className="aspect-video bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-center text-slate-400">
+                    <span className="text-sm">Visual 1 (Coming Soon)</span>
+                 </div>
+                 <div className="aspect-video bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-center text-slate-400">
+                    <span className="text-sm">Visual 2 (Coming Soon)</span>
+                 </div>
+              </div>
+            </section>
+
           </div>
 
-          {/* Section: Key Outcomes */}
-          <div className="mb-8">
-            <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
-              <Award size={20} className={project.styles.text} />
-              Key Outcomes
-            </h3>
-            <ul className="space-y-3">
-              {project.results && project.results.length > 0 ? (
-                project.results.map((result: string, idx: number) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <CheckCircle2 size={18} className={`mt-0.5 shrink-0 ${project.styles.text}`} />
-                    <span className="text-slate-700 text-sm leading-relaxed">{result}</span>
+          {/* Right Column: Results & Tools */}
+          <div className="space-y-8">
+            
+            {/* Key Outcomes Box */}
+            <div className={`p-6 rounded-2xl ${project.styles.bg} bg-opacity-40 border ${project.styles.impactBox.split(' ')[0]}`}>
+              <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                <Award className={project.styles.text} size={20} />
+                Key Results
+              </h3>
+              <ul className="space-y-4">
+                {project.results && project.results.length > 0 ? (
+                  project.results.map((result: string, idx: number) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <CheckCircle2 size={18} className={`mt-1 shrink-0 ${project.styles.text}`} />
+                      <span className="text-slate-700 text-sm font-medium leading-relaxed">{result}</span>
+                    </li>
+                  ))
+                ) : (
+                  <li className="flex items-start gap-3">
+                     <CheckCircle2 size={18} className={`mt-1 shrink-0 ${project.styles.text}`} />
+                     <span className="text-slate-700 text-sm font-medium leading-relaxed">{project.impact}</span>
                   </li>
-                ))
-              ) : (
-                <li className="flex items-start gap-3">
-                   <CheckCircle2 size={18} className={`mt-0.5 shrink-0 ${project.styles.text}`} />
-                   <span className="text-slate-700 text-sm leading-relaxed">{project.impact}</span>
-                </li>
-              )}
-            </ul>
-          </div>
-
-          {/* Section: Tech Stack */}
-          <div>
-            <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
-              <Terminal size={20} className={project.styles.text} />
-              Technologies Used
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {project.tools.map((tool: string) => (
-                <span key={tool} className="text-sm bg-slate-100 text-slate-700 px-3 py-1.5 rounded-lg border border-slate-200 font-medium">
-                  {tool}
-                </span>
-              ))}
+                )}
+              </ul>
             </div>
-          </div>
 
+            {/* Tech Stack */}
+            <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+              <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                <Terminal className={project.styles.text} size={20} />
+                Tech Stack
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {project.tools.map((tool: string) => (
+                  <span key={tool} className="text-sm bg-slate-50 text-slate-700 px-3 py-1.5 rounded-lg border border-slate-200 font-medium">
+                    {tool}
+                  </span>
+                ))}
+              </div>
+            </div>
+            
+            {/* Documents / Resources */}
+            <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+              <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                <Download className={project.styles.text} size={20} />
+                Resources
+              </h3>
+              {/* Placeholder for PDF link - can be dynamic later */}
+              <button disabled className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-slate-50 text-slate-400 rounded-lg border border-slate-200 cursor-not-allowed">
+                <FileText size={18} />
+                Project Report (PDF)
+              </button>
+            </div>
+
+          </div>
         </div>
         
-        {/* Footer */}
-        <div className="p-4 border-t border-slate-100 bg-slate-50 text-center">
-           <p className="text-xs text-slate-400">© 2026 Lihong GAO Portfolio</p>
+        {/* Bottom Footer Area */}
+        <div className="mt-20 pt-10 border-t border-slate-100 text-center pb-12">
+          <p className="text-slate-400 mb-4">Interested in discussing this project?</p>
+          <a href={`mailto:${PERSONAL_INFO.email}`} className="text-blue-600 font-medium hover:underline text-lg">
+            Contact me at {PERSONAL_INFO.email}
+          </a>
         </div>
 
       </div>
     </div>
   );
 };
+
 
 // Project Card 
 const ProjectCard = ({ project, onClick }: any) => (
@@ -881,12 +951,16 @@ const ProjectFilter = ({ activeCategory, onFilter }: any) => {
 export default function App() {
   const [activeSection, setActiveSection] = useState('home');
   const [selectedSkill, setSelectedSkill] = useState<any>(null);
-  const [selectedProject, setSelectedProject] = useState<any>(null); // New state for project modal
+  const [selectedProject, setSelectedProject] = useState<any>(null);
   const [projectCategory, setProjectCategory] = useState("All");
 
   const filteredProjects = projectCategory === "All" 
     ? PROJECTS 
     : PROJECTS.filter(p => p.category === projectCategory || (projectCategory === "Risk Management" && p.category === "Financial Modeling"));
+
+  if (selectedProject) {
+    return <ProjectDetailView project={selectedProject} onBack={() => setSelectedProject(null)} />;
+  }
 
   const renderContent = () => {
     switch (activeSection) {
@@ -898,7 +972,6 @@ export default function App() {
               <div className="relative z-10 flex flex-col-reverse md:flex-row items-center md:items-start gap-8 md:gap-12">
                 <div className="flex-1 text-center md:text-left">
                   <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide mb-6"><Terminal size={12} /><span>Open to Work</span></div>
-                  {/* [Updated Headline] Focus on Decision Making & Business Analytics */}
                   <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-6 tracking-tight leading-tight">
                     Driving Decisions with <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
@@ -908,7 +981,6 @@ export default function App() {
                   <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-xl mx-auto md:mx-0">Hi, I'm <strong>{PERSONAL_INFO.name}</strong>. {PERSONAL_INFO.tagline}<br className="hidden md:block" />{PERSONAL_INFO.title}</p>
                   <div className="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
                     <button onClick={() => setActiveSection('projects')} className="w-full sm:w-auto bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 shadow-lg shadow-blue-200">View Projects <ChevronRight size={18} /></button>
-                    {/* [Change 2] Resume Download Link */}
                     <a 
                       href={PERSONAL_INFO.resumeUrl} 
                       download="Lihong_Gao_Data_Analyst.pdf"
@@ -919,7 +991,6 @@ export default function App() {
                   </div>
                 </div>
                 
-                {/* Hero Image Container - Click to go to About */}
                 <div 
                   className="shrink-0 relative group cursor-pointer"
                   onClick={() => setActiveSection('about')}
@@ -933,7 +1004,6 @@ export default function App() {
               </div>
             </section>
             
-            {/* Core Skills Section */}
             <section>
               <div className="flex items-center gap-2 mb-4">
                  <h2 className="text-xl font-bold text-slate-900">Core Competencies</h2>
@@ -980,7 +1050,7 @@ export default function App() {
                  <ProjectCard 
                    key={project.id} 
                    project={project} 
-                   onClick={(p: any) => setSelectedProject(p)} // Pass click handler
+                   onClick={(p: any) => setSelectedProject(p)} 
                  />
                ))}
              </div>
@@ -992,13 +1062,11 @@ export default function App() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
               <div className="md:col-span-2 space-y-8">
                 
-                {/* Education Section with Timeline Line restored */}
                 <section className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm">
                   <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2"><GraduationCap className="text-blue-600" /> Education</h2>
                   <div className="space-y-0">
                     {EDUCATION.map(edu => (
                       <div key={edu.id} className="relative border-l-2 border-slate-200 pl-8 pb-10 last:pb-0 group">
-                        {/* Timeline Dot */}
                         <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white border-4 border-blue-100 group-hover:border-blue-400 transition-colors">
                            <div className="w-full h-full rounded-full bg-blue-600"></div>
                         </div>
@@ -1020,13 +1088,11 @@ export default function App() {
                   </div>
                 </section>
                 
-                {/* Experience Section with Timeline Line restored */}
                 <section className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm">
                   <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2"><Briefcase className="text-blue-600" /> Professional Experience</h2>
                   <div className="space-y-0">
                     {EXPERIENCE.map(exp => (
                       <div key={exp.id} className="relative border-l-2 border-slate-200 pl-8 pb-10 last:pb-0 group">
-                        {/* Timeline Dot */}
                         <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white border-4 border-blue-100 group-hover:border-blue-400 transition-colors">
                            <div className="w-full h-full rounded-full bg-blue-600"></div>
                         </div>
@@ -1103,14 +1169,10 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-blue-100 pb-24 md:pb-0 relative">
-      {/* Modals */}
       {selectedSkill && (<SkillModalContent skill={selectedSkill} onClose={() => setSelectedSkill(null)} />)}
-      {selectedProject && (<ProjectDetailModal project={selectedProject} onClose={() => setSelectedProject(null)} />)}
-
       <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200 hidden md:block">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="font-bold text-xl tracking-tight text-slate-900 flex items-center gap-2 cursor-pointer" onClick={() => setActiveSection('home')}>
-            {/* [Change 4] Changed PieChart Icon to Profile Image in Header */}
             <img 
               src={PERSONAL_INFO.heroPhotoUrl} 
               alt="Logo" 
@@ -1135,6 +1197,7 @@ export default function App() {
       <main className="max-w-6xl mx-auto px-6 py-8 md:py-12">
         {renderContent()}
       </main>
+      {selectedProject && (<ProjectDetailView project={selectedProject} onBack={() => setSelectedProject(null)} />)}
     </div>
   );
 }
