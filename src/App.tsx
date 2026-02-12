@@ -140,7 +140,7 @@ const PROJECTS = [
     tools: ["Python (PuLP)", "Monte Carlo Simulation", "Optimization", "Sensitivity Analysis"],
     impact: "Identified optimal facility configurations with 100% robustness and quantified cost risks to guide strategic investment.",
     githubLink: "https://github.com/Epiphany-Leon/BA-SupplyChainOptimizationAndSimulation",
-    pdfUrl: "/files/BA_Group10_Project.pdf",
+    pdfUrl: "/files/projects/BA_Group10_Project.pdf",
     styles: {
       strip: "bg-cyan-600",
       impactBox: "border-cyan-600 bg-cyan-50",
@@ -185,7 +185,7 @@ const PROJECTS = [
     tools: ["R", "Machine Learning (KNN/Trees)", "K-Means Clustering", "Regression"],
     impact: "Segmented users into 3 personas, proving digital modality matters more than total duration.",
     githubLink: "https://github.com/Epiphany-Leon/DA-DigitalWellnessAndLifestyleAnalysis",
-    pdfUrl: "/files/Team_Viper_Project_Report.pdf",
+    pdfUrl: "/files/projects/Team_Viper_Project_Report.pdf",
     styles: {
       strip: "bg-indigo-500", 
       impactBox: "border-indigo-500 bg-indigo-50",
@@ -229,7 +229,6 @@ const PROJECTS = [
     tools: ["Tableau", "Data Storytelling", "Consumer Profiling"],
     impact: "Formulated 4 strategic recommendations for inventory planning and geo-targeted campaigns.",
     githubLink: "https://github.com/Epiphany-Leon/Datavisualization-CustomerShoppingBehaviorAnalysis",
-    pdfUrl: "/files/DV_Group223.pdf",
     styles: {
       strip: "bg-orange-500",
       impactBox: "border-orange-500 bg-orange-50",
