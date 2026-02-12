@@ -102,14 +102,14 @@ const CORE_SKILLS_DETAILS = [
   }
 ];
 
-// PROJECTS Data - Added 'text' and 'bg' to styles for full page view
 const PROJECTS = [
   {
     id: 9, 
     title: "SnapHomz Rental Data Pipeline",
     category: "AI & Automation",
     summary: "Built a full-stack data pipeline using FastAPI and Selenium to scrape, clean, and serve rental listing data.",
-    details: "Designed and implemented an end-to-end data engineering solution to aggregate rental market data. The system utilizes Selenium for automated web scraping of property listings, cleanses and normalizes data using Python Pandas, and stores structured records in a PostgreSQL database. A FastAPI backend serves this data to the frontend, enabling real-time filtering and search.",
+    context: "The rental market lacks a unified API for real-time property data. Manual aggregation is slow and error-prone, requiring an automated engineering solution to ingest and normalize dynamic web listings.",
+    methodology: "1. Data Acquisition: Engineered Selenium scripts to automate the web scraping of dynamic property listings, bypassing anti-bot measures.\n2. Data Engineering: Designed a Python (Pandas) pipeline for data cleansing, normalization, and handling missing values.\n3. Database Architecture: Designed a normalized PostgreSQL schema and implemented upsert logic to manage daily updates without duplicates.\n4. API Development: Built a RESTful backend using FastAPI to serve processed data to frontend clients with ultra-low latency.",
     results: [
       "Reduced manual data entry time by 90% through automated scraping.",
       "Established a normalized database schema supporting scalable property records.",
@@ -126,11 +126,12 @@ const PROJECTS = [
     }
   },
   {
-    id: 7, 
+    id: 10, 
     title: "Global Supply Chain Network Optimization",
     category: "Quantitative Analysis",
     summary: "Modeled a multi-echelon supply chain using Mixed-Integer Linear Programming (MILP) in Python.",
-    details: "Addressed a strategic facility location problem for a global electronics manufacturer (PrecisionLink). Formulated a Mixed-Integer Linear Programming (MILP) model using the PuLP library to minimize total costs (fixed + variable). To account for market volatility, I conducted 500 Monte Carlo simulation iterations, modeling demand as normal distributions based on forecasted data.",
+    context: "PrecisionLink needed to expand production capacity to serve 5 global markets (USA, Germany, Japan, Brazil, India) but faced severe uncertainty in future demand, requiring a mathematically robust expansion strategy.",
+    methodology: "1. Optimization Modeling: Formulated a Mixed-Integer Linear Programming (MILP) model in Python (PuLP) to minimize fixed setup and variable transportation costs, subject to strict capacity and demand constraints.\n2. Monte Carlo Simulation: Simulated 500 stochastic demand scenarios across the 5 global markets using Normal distributions based on historical variances.\n3. Robustness Analysis: Evaluated the probability of facility utilization across all simulations to identify highly robust network nodes vs. sensitive/risky nodes.",
     results: [
       "Identified that High-Capacity factories in USA and Japan have a 100% robustness score (opening probability).",
       "Quantified financial risk with a Mean Total Cost of $92.6M and a Standard Deviation of $6.0M.",
@@ -139,6 +140,7 @@ const PROJECTS = [
     tools: ["Python (PuLP)", "Monte Carlo Simulation", "Optimization", "Sensitivity Analysis"],
     impact: "Identified optimal facility configurations with 100% robustness and quantified cost risks to guide strategic investment.",
     githubLink: "https://github.com/Epiphany-Leon/BA-SupplyChainOptimizationAndSimulation",
+    pdfUrl: "/files/BA_Group10_Project.pdf",
     styles: {
       strip: "bg-cyan-600",
       impactBox: "border-cyan-600 bg-cyan-50",
@@ -151,7 +153,8 @@ const PROJECTS = [
     title: "Fuel Inventory & Investment Analysis",
     category: "Quantitative Analysis",
     summary: "Analyzed gas station inventory data and developed a financial model (NPV/ROI) for investment assessment.",
-    details: "Performed a comprehensive analysis of fuel inventory management practices using Python. The project involved data cleaning of daily transaction logs, detecting shortage patterns, and simulating the operational impact of adding new storage tanks. I built a financial model to calculate Net Present Value (NPV) and Return on Investment (ROI) over a 5-year horizon.",
+    context: "A gas station faced recurring fuel shortages during peak demand. Management needed to decide whether a massive capital expenditure (installing a new underground tank) was financially justified by the recovered lost sales.",
+    methodology: "1. Data Integration & EDA: Merged disparate daily transaction, delivery, and inventory logs into a unified time-series dataset using Python Pandas.\n2. Shortage Detection: Developed algorithms to flag timestamps where inventory levels dropped below critical demand thresholds.\n3. Operational Optimization: Calculated dynamic safety stock levels and reorder points to mitigate stockout risks.\n4. Financial Modeling: Constructed a Discounted Cash Flow (DCF) model to compute the Net Present Value (NPV) and Return on Investment (ROI) over a 5-year horizon.",
     results: [
       "Calculated a positive NPV Return on Investment of 30.6% for new tank investments.",
       "Identified optimal reorder points that reduce stockout events by approximately 40%.",
@@ -172,7 +175,8 @@ const PROJECTS = [
     title: "Digital Wellness & Lifestyle Analysis",
     category: "Quantitative Analysis", 
     summary: "Analyzed 5,000+ survey responses using R to decouple the effects of screen time vs. lifestyle on mental health.",
-    details: "Investigated the nuanced relationship between digital habits and mental well-being using a large-scale dataset. Employed K-Means clustering to identify distinct user personas and Decision Tree algorithms to find thresholds for 'healthy' usage. The analysis challenged the 'all screen time is bad' narrative by distinguishing between productive and passive consumption.",
+    context: "Public discourse often generalizes 'screen time' as harmful. We sought to investigate which specific digital behaviors actually correlate with high stress levels, analyzing a dataset of 5,000 user responses.",
+    methodology: "1. Exploratory Data Analysis: Conducted correlation analysis (heatmaps) and Linear Regression to quantify the impact of sleep quality versus sleep duration on overall mental health scores.\n2. Supervised Learning: Implemented Decision Tree and Random Forest algorithms to classify users into stress categories and pinpoint critical usage thresholds (e.g., 3.85 hours).\n3. Unsupervised Learning: Applied K-Means Clustering, utilizing the Elbow Method to determine the optimal k=3, successfully segmenting the participant base into distinct behavioral personas.",
     results: [
       "Identified 3.85 hours/day of social media usage as a critical tipping point for high stress.",
       "Segmented users into 3 clusters: 'Balanced Users', 'Gamers', and 'Heavy Social Users'.",
@@ -181,6 +185,7 @@ const PROJECTS = [
     tools: ["R", "Machine Learning (KNN/Trees)", "K-Means Clustering", "Regression"],
     impact: "Segmented users into 3 personas, proving digital modality matters more than total duration.",
     githubLink: "https://github.com/Epiphany-Leon/DA-DigitalWellnessAndLifestyleAnalysis",
+    pdfUrl: "/files/Team_Viper_Project_Report.pdf",
     styles: {
       strip: "bg-indigo-500", 
       impactBox: "border-indigo-500 bg-indigo-50",
@@ -193,7 +198,8 @@ const PROJECTS = [
     title: "Local LLM Deployment & Agentic AI",
     category: "AI & Automation",
     summary: "Engineered autonomous AI agents using AnythingLLM/RAG to automate research workflows.",
-    details: "Implemented a local Retrieval-Augmented Generation (RAG) system to process sensitive internal documents securely. Deployed open-source LLMs (Llama 3, Mistral) using Ollama and integrated them with vector databases. The system allows users to query unstructured data and receive cited, context-aware answers.",
+    context: "Processing sensitive internal documents required an advanced AI reasoning solution that strictly adhered to privacy protocols by not sending data to external cloud providers (like OpenAI).",
+    methodology: "1. Environment Setup: Deployed local, open-source Large Language Models (Llama 3, Mistral) using Ollama to ensure complete data privacy.\n2. RAG Pipeline Construction: Integrated a Retrieval-Augmented Generation architecture with vector databases to process, chunk, and index sensitive internal PDFs.\n3. Agent Engineering: Developed AI agents capable of autonomous multi-document reasoning, contextual querying, and generating heavily cited responses.",
     results: [
       "Achieved 100% data privacy by running all inference locally (air-gapped).",
       "Reduced document search time by approximately 70% for the research team.",
@@ -213,7 +219,8 @@ const PROJECTS = [
     title: "Customer Shopping Behavior Analysis",
     category: "Business Intelligence", 
     summary: "Analyzed transactional data using Tableau to decode shopping patterns and profile core demographics.",
-    details: "Conducted a deep-dive analysis of retail transaction data to answer the '4Ws': When, Where, What, and Who. Utilizing Tableau for visualization, I uncovered seasonal trends and demographic preferences that were previously obscured in raw data. The analysis focused on actionable insights for marketing and inventory teams.",
+    context: "The retail business needed to understand why sales fluctuated and identify their most valuable customer segments in order to optimize marketing spend and inventory planning.",
+    methodology: "1. Data Aggregation: Cleaned and structured internal retail transactional data.\n2. Analytic Framework: Adopted a strategic '4Ws' approach (When, Where, What, Who) to systematically decode purchasing patterns.\n3. Visual Analytics: Developed interactive Tableau dashboards utilizing geospatial mapping, seasonal trend lines, and demographic segmentation charts to translate raw records into actionable marketing strategies.",
     results: [
       "Identified 'Fall' as the dominant sales season, contrary to the expected Holiday season peak.",
       "Profiled the highest value customer segment: Males aged 30-59.",
@@ -222,6 +229,7 @@ const PROJECTS = [
     tools: ["Tableau", "Data Storytelling", "Consumer Profiling"],
     impact: "Formulated 4 strategic recommendations for inventory planning and geo-targeted campaigns.",
     githubLink: "https://github.com/Epiphany-Leon/Datavisualization-CustomerShoppingBehaviorAnalysis",
+    pdfUrl: "/files/DV_Group223.pdf",
     styles: {
       strip: "bg-orange-500",
       impactBox: "border-orange-500 bg-orange-50",
@@ -234,7 +242,8 @@ const PROJECTS = [
     title: "SME Financing Statistical Modeling",
     category: "Quantitative Analysis",
     summary: "Orchestrated full-cycle research in R to optimize credit risk assessment frameworks on 50,000+ records.",
-    details: "Led a statistical research project to improve credit risk assessment for Small and Medium Enterprises (SMEs). Processed a dataset of over 50,000 transaction records, handling missing values and outliers. Applied logistic regression and machine learning classifiers to predict default probabilities.",
+    context: "Small and Medium Enterprise (SME) lending carries inherently high risk. The financial institution sought to improve the predictive accuracy of its default forecasting models.",
+    methodology: "1. Data Preprocessing: Cleansed a massive dataset of 50,000+ transaction records, addressing missing values and treating outliers.\n2. Feature Engineering: Extracted and transformed key financial indicators relevant to corporate credit health.\n3. Predictive Modeling: Trained and evaluated multiple classification models (Logistic Regression, Random Forest) to forecast default probabilities.\n4. Strategic Evaluation: Assessed the model's business value by comparing the efficiency gain against baseline credit assessment frameworks.",
     results: [
       "Achieved a 25% efficiency gain in the proposed financing strategy.",
       "Identified key risk factors that were previously underweighted in the credit scorecard.",
@@ -254,7 +263,8 @@ const PROJECTS = [
     title: "Overseas Investment Risk Assessment",
     category: "Risk Management",
     summary: "Verified 37 risk indicators across five dimensions using Random Forest algorithms.",
-    details: "Participated in a large-scale risk assessment project for overseas investments. Utilized Random Forest algorithms to validate the significance of 37 different risk indicators across political, economic, and social dimensions. Used Principal Component Analysis (PCA) to reduce dimensionality and clustering to group countries by risk profile.",
+    context: "Investors needed a robust, data-driven methodology to assess macro-level risks across emerging global markets prior to allocating significant capital.",
+    methodology: "1. Dimensionality Reduction: Applied Principal Component Analysis (PCA) to synthesize 37 complex risk indicators spanning political, economic, and social dimensions.\n2. Feature Importance: Utilized Random Forest algorithms to mathematically validate the weight and significance of each individual risk factor.\n3. Market Segmentation: Performed K-Means clustering analysis to group countries into 6 distinct risk profiles, enabling customized portfolio diversification strategies.",
     results: [
       "Segmented regional markets into six distinct risk clusters.",
       "Defined specific investor risk profiles for each cluster.",
@@ -274,7 +284,8 @@ const PROJECTS = [
     title: "Bank Sales Operations Dashboard",
     category: "Business Intelligence",
     summary: "Built dynamic Excel dashboards to visualize real-time KPIs, sales funnels, and branch quota attainment.",
-    details: "Designed and implemented a dynamic Excel-based dashboard system for a retail bank. Utilized advanced PivotTables, VBA macros, and VLOOKUPs to consolidate data from disparate branch reports. The dashboard provided regional managers with a daily view of sales performance against quotas.",
+    context: "Regional banking managers lacked a real-time, consolidated view of branch performance, previously relying on static, time-consuming weekly reports.",
+    methodology: "1. Data Consolidation: Extracted and merged fragmented daily branch reports using advanced Power Query and VLOOKUP functions.\n2. Process Automation: Wrote custom VBA macros to eliminate manual data entry and streamline the daily reporting pipeline.\n3. Interactive Visualization: Built dynamic Excel PivotTables and visual slicers to provide managers with a real-time, consolidated view of sales funnels and quota attainment.",
     results: [
       "Reduced manual data reconciliation time by 15% per week.",
       "Enabled early identification of underperforming branches, allowing for faster intervention.",
@@ -294,7 +305,8 @@ const PROJECTS = [
     title: "AIA International Finance Research",
     category: "Quantitative Analysis", 
     summary: "Modeled HK offshore market dynamics by regressing macro-indicators like RMB index.",
-    details: "Conducted econometric research on the Hong Kong offshore RMB market. Collected time-series data on exchange rates, RMB index, and trade volumes. Applied Granger Causality tests and Regression Analysis to determine directional relationships.",
+    context: "Academic and business stakeholders required empirical research investigating the complex factors driving the liquidity and growth of the offshore RMB market in Hong Kong.",
+    methodology: "1. Data Collection: Aggregated rigorous time-series macroeconomic data including historical exchange rates, the RMB index, and offshore trade volumes.\n2. Econometric Modeling: Conducted Granger Causality tests to determine the directional flow and predictive relationships between variables.\n3. Regression Analysis: Applied multivariate regression models to mathematically quantify the impact of exchange rate volatility and policy liberalization on offshore market liquidity.",
     results: [
       "Substantiated a positive correlation between policy liberalization and market development.",
       "Identified lag effects in how exchange rate volatility impacts offshore deposits.",
@@ -374,7 +386,6 @@ const SKILLS = [
   { name: "Excel (VBA)", level: 90, icon: Layers },
 ];
 
-// Preserved ALL original paths and details
 const GALLERY_PHOTOS = [
   {
     id: 1,
@@ -543,10 +554,10 @@ const ProjectDetailView = ({ project, onBack }: any) => {
   if (!project) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-white overflow-y-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="fixed inset-0 z-50 bg-slate-50 overflow-y-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
       
       {/* 1. Header / Navigation */}
-      <div className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200">
+      <div className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
           <button 
             onClick={onBack}
@@ -566,35 +577,24 @@ const ProjectDetailView = ({ project, onBack }: any) => {
         </div>
       </div>
 
-      {/* 2. Hero Content */}
+      {/* 2. Main Content Wrapper */}
       <div className="max-w-5xl mx-auto px-6 py-12 md:py-16">
-        <div className="mb-12 border-b border-slate-100 pb-10">
-          <h1 className={`text-3xl md:text-5xl font-extrabold text-slate-900 mb-6 leading-tight`}>
+        
+        {/* Title Area */}
+        <div className="mb-12 border-b border-slate-200 pb-10">
+          <h1 className={`text-3xl md:text-5xl font-extrabold text-slate-900 leading-tight`}>
             {project.title}
           </h1>
-          
-          {/* GitHub Button in Hero */}
-          {project.githubLink && (
-            <a 
-              href={project.githubLink}
-              target="_blank"
-              rel="noreferrer"
-              className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-white font-medium shadow-md hover:shadow-lg hover:brightness-110 transition-all transform hover:-translate-y-0.5 ${project.styles.strip}`}
-            >
-              <Github size={20} />
-              View on GitHub
-            </a>
-          )}
         </div>
 
         {/* 3. Main Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
           
-          {/* Left Column: Context & Methods */}
-          <div className="md:col-span-2 space-y-12">
+          {/* Left Column: Context, Methodology, Results, Gallery */}
+          <div className="lg:col-span-2 space-y-12">
             
             {/* Context */}
-            <section>
+            <section className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm">
               <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
                 <BookOpen className={project.styles.text} size={24} />
                 Context & Objective
@@ -605,96 +605,131 @@ const ProjectDetailView = ({ project, onBack }: any) => {
             </section>
 
             {/* Methodology */}
-            <section>
+            <section className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm">
               <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
                 <Layers className={project.styles.text} size={24} />
                 Methodology
               </h3>
-              <p className="text-slate-600 leading-relaxed text-lg">
-                {project.methodology || "Details on the analytical approach and technical implementation..."}
-              </p>
-            </section>
-
-             {/* Visuals / Gallery Placeholder */}
-             <section>
-              <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
-                <ImageIcon className={project.styles.text} size={24} />
-                Project Gallery
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                 {/* Placeholder for future images */}
-                 <div className="aspect-video bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-center text-slate-400">
-                    <span className="text-sm">Visual 1 (Coming Soon)</span>
-                 </div>
-                 <div className="aspect-video bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-center text-slate-400">
-                    <span className="text-sm">Visual 2 (Coming Soon)</span>
-                 </div>
+              <div className="text-slate-600 leading-relaxed text-lg space-y-3">
+                {project.methodology 
+                  ? project.methodology.split('\n').map((para: string, idx: number) => (
+                      <p key={idx}>{para}</p>
+                    ))
+                  : <p>Details on the analytical approach and technical implementation are available in the repository.</p>
+                }
               </div>
             </section>
 
-          </div>
-
-          {/* Right Column: Results & Tools */}
-          <div className="space-y-8">
-            
-            {/* Key Outcomes Box */}
-            <div className={`p-6 rounded-2xl ${project.styles.bg} bg-opacity-40 border ${project.styles.impactBox.split(' ')[0]}`}>
-              <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
-                <Award className={project.styles.text} size={20} />
+            {/* Key Outcomes Box (Moved to Left) */}
+            <section className={`p-8 rounded-2xl ${project.styles.bg} bg-opacity-40 border border-slate-100 shadow-sm`}>
+              <h3 className="text-xl font-bold text-slate-900 mb-5 flex items-center gap-2">
+                <Award className={project.styles.text} size={24} />
                 Key Results
               </h3>
               <ul className="space-y-4">
                 {project.results && project.results.length > 0 ? (
                   project.results.map((result: string, idx: number) => (
-                    <li key={idx} className="flex items-start gap-3">
-                      <CheckCircle2 size={18} className={`mt-1 shrink-0 ${project.styles.text}`} />
-                      <span className="text-slate-700 text-sm font-medium leading-relaxed">{result}</span>
+                    <li key={idx} className="flex items-start gap-4">
+                      <CheckCircle2 size={20} className={`mt-0.5 shrink-0 ${project.styles.text}`} />
+                      <span className="text-slate-700 text-base leading-relaxed">{result}</span>
                     </li>
                   ))
                 ) : (
-                  <li className="flex items-start gap-3">
-                     <CheckCircle2 size={18} className={`mt-1 shrink-0 ${project.styles.text}`} />
-                     <span className="text-slate-700 text-sm font-medium leading-relaxed">{project.impact}</span>
+                  <li className="flex items-start gap-4">
+                     <CheckCircle2 size={20} className={`mt-0.5 shrink-0 ${project.styles.text}`} />
+                     <span className="text-slate-700 text-base leading-relaxed">{project.impact}</span>
                   </li>
                 )}
               </ul>
-            </div>
+            </section>
 
-            {/* Tech Stack */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
-              <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
-                <Terminal className={project.styles.text} size={20} />
-                Tech Stack
+             {/* Visuals / Gallery (Single Image per Row) */}
+             <section className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm">
+              <h3 className="text-xl font-bold text-slate-900 mb-5 flex items-center gap-2">
+                <ImageIcon className={project.styles.text} size={24} />
+                Project Gallery
               </h3>
-              <div className="flex flex-wrap gap-2">
-                {project.tools.map((tool: string) => (
-                  <span key={tool} className="text-sm bg-slate-50 text-slate-700 px-3 py-1.5 rounded-lg border border-slate-200 font-medium">
-                    {tool}
-                  </span>
-                ))}
+              <div className="w-full aspect-[16/9] bg-slate-50 rounded-xl border border-slate-200 flex flex-col items-center justify-center text-slate-400 overflow-hidden">
+                 <ImageIcon size={48} className="opacity-20 mb-3" />
+                 <span className="text-sm font-medium">Visual Presentation (Coming Soon)</span>
               </div>
-            </div>
-            
-            {/* Documents / Resources */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
-              <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
-                <Download className={project.styles.text} size={20} />
-                Resources
-              </h3>
-              {/* Placeholder for PDF link - can be dynamic later */}
-              <button disabled className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-slate-50 text-slate-400 rounded-lg border border-slate-200 cursor-not-allowed">
-                <FileText size={18} />
-                Project Report (PDF)
-              </button>
-            </div>
+            </section>
 
+          </div>
+
+          {/* Right Column: Tech Stack & Resources (Sticky) */}
+          <div className="lg:col-span-1">
+            <div className="sticky top-24 space-y-6">
+              
+              {/* Tech Stack (Moved to Right Top) */}
+              <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2 border-b border-slate-100 pb-4">
+                  <Terminal className={project.styles.text} size={20} />
+                  Tech Stack
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {project.tools.map((tool: string) => (
+                    <span key={tool} className="text-sm bg-slate-50 text-slate-700 px-3 py-1.5 rounded-lg border border-slate-200 font-medium shadow-sm">
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Resources */}
+              <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2 border-b border-slate-100 pb-4">
+                  <Download className={project.styles.text} size={20} />
+                  Resources
+                </h3>
+                
+                <div className="space-y-4">
+                  {/* GitHub Button */}
+                  {project.githubLink ? (
+                    <a 
+                      href={project.githubLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={`w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-white font-medium shadow-md hover:shadow-lg transition-all ${project.styles.strip}`}
+                    >
+                      <Github size={18} />
+                      View on GitHub
+                    </a>
+                  ) : (
+                    <button disabled className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-slate-100 text-slate-400 rounded-lg border border-slate-200 cursor-not-allowed">
+                      <Github size={18} />
+                      GitHub (Unavailable)
+                    </button>
+                  )}
+
+                  {/* PDF Report Button */}
+                  {project.pdfUrl ? (
+                    <a 
+                      href={project.pdfUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-white text-slate-700 hover:bg-slate-50 hover:text-slate-900 rounded-lg border border-slate-200 font-medium transition-colors shadow-sm"
+                    >
+                      <FileText size={18} className="text-red-500" />
+                      Project Report (PDF)
+                    </a>
+                  ) : (
+                    <button disabled className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-slate-50 text-slate-400 rounded-lg border border-slate-200 cursor-not-allowed">
+                      <FileText size={18} />
+                      Report (Unavailable)
+                    </button>
+                  )}
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
         
         {/* Bottom Footer Area */}
-        <div className="mt-20 pt-10 border-t border-slate-100 text-center pb-12">
-          <p className="text-slate-400 mb-4">Interested in discussing this project?</p>
-          <a href={`mailto:${PERSONAL_INFO.email}`} className="text-blue-600 font-medium hover:underline text-lg">
+        <div className="mt-20 pt-10 border-t border-slate-200 text-center pb-12">
+          <p className="text-slate-500 mb-4">Interested in discussing this project?</p>
+          <a href={`mailto:${PERSONAL_INFO.email}`} className="text-blue-600 font-bold hover:underline text-lg">
             Contact me at {PERSONAL_INFO.email}
           </a>
         </div>
@@ -704,8 +739,7 @@ const ProjectDetailView = ({ project, onBack }: any) => {
   );
 };
 
-
-// Project Card 
+// Project Card (Cleaned up, Tech Stack ONLY)
 const ProjectCard = ({ project, onClick }: any) => (
   <div 
     className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col h-full animate-in fade-in zoom-in-95 duration-300 hover:-translate-y-1 relative group cursor-pointer"
@@ -730,11 +764,11 @@ const ProjectCard = ({ project, onClick }: any) => (
       </div>
       
       {/* Title & Summary */}
-      <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">{project.title}</h3>
+      <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors pr-6">{project.title}</h3>
       <p className="text-slate-600 text-sm mb-6 leading-relaxed flex-grow">{project.summary}</p>
       
-      <div className="mt-auto space-y-4">
-        {/* Tools Section */}
+      <div className="mt-auto pt-4 border-t border-slate-50">
+        {/* Tools Section ONLY */}
         <div>
           <h4 className="text-[10px] uppercase tracking-wide text-slate-400 font-bold mb-2">Tech Stack</h4>
           <div className="flex flex-wrap gap-2">
@@ -746,17 +780,6 @@ const ProjectCard = ({ project, onClick }: any) => (
             {project.tools.length > 4 && (
                <span className="text-[10px] text-slate-400 px-1 py-1">+{project.tools.length - 4}</span>
             )}
-          </div>
-        </div>
-
-        {/* Impact Section - Highlighted Box */}
-        <div className={`p-3 rounded-lg border border-l-4 ${project.styles.impactBox} bg-opacity-30`}>
-          <div className="flex items-start gap-2">
-            <LineChart size={14} className="mt-0.5 shrink-0 opacity-70" />
-            <p className="text-xs font-medium text-slate-700 leading-snug line-clamp-2">
-              <span className="font-bold block text-slate-900 mb-0.5">Business Impact:</span>
-              {project.impact}
-            </p>
           </div>
         </div>
       </div>
@@ -990,7 +1013,6 @@ export default function App() {
                     </a>
                   </div>
                 </div>
-                
                 <div 
                   className="shrink-0 relative group cursor-pointer"
                   onClick={() => setActiveSection('about')}
@@ -1003,7 +1025,6 @@ export default function App() {
                 </div>
               </div>
             </section>
-            
             <section>
               <div className="flex items-center gap-2 mb-4">
                  <h2 className="text-xl font-bold text-slate-900">Core Competencies</h2>
@@ -1061,7 +1082,6 @@ export default function App() {
           <div className="animate-in slide-in-from-bottom-4 duration-500">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
               <div className="md:col-span-2 space-y-8">
-                
                 <section className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm">
                   <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2"><GraduationCap className="text-blue-600" /> Education</h2>
                   <div className="space-y-0">
@@ -1070,7 +1090,6 @@ export default function App() {
                         <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white border-4 border-blue-100 group-hover:border-blue-400 transition-colors">
                            <div className="w-full h-full rounded-full bg-blue-600"></div>
                         </div>
-                        
                         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-1">
                           <h3 className="font-bold text-lg text-slate-900">{edu.degree}</h3>
                           <span className="text-xs font-semibold text-slate-500 bg-slate-100 px-2 py-1 rounded mt-1 sm:mt-0 w-fit">{edu.period}</span>
@@ -1087,7 +1106,6 @@ export default function App() {
                     ))}
                   </div>
                 </section>
-                
                 <section className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm">
                   <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2"><Briefcase className="text-blue-600" /> Professional Experience</h2>
                   <div className="space-y-0">
@@ -1096,7 +1114,6 @@ export default function App() {
                         <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white border-4 border-blue-100 group-hover:border-blue-400 transition-colors">
                            <div className="w-full h-full rounded-full bg-blue-600"></div>
                         </div>
-
                         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
                           <h3 className="font-bold text-lg text-slate-900">{exp.role}</h3>
                           <span className="text-xs font-semibold text-slate-500 bg-slate-100 px-2 py-1 rounded mt-1 sm:mt-0 w-fit">{exp.period}</span>
@@ -1114,7 +1131,6 @@ export default function App() {
                   </div>
                 </section>
               </div>
-
               <div className="space-y-6">
                 <section className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
                   <h2 className="text-xl font-bold text-slate-900 mb-6">Technical Skills</h2>
@@ -1124,13 +1140,11 @@ export default function App() {
                     ))}
                   </div>
                 </section>
-
                 <section className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
                    <h2 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
                      <Feather className="text-blue-600" /> Beyond Data
                    </h2>
                    <p className="text-sm text-slate-500 mb-4">When I'm not analyzing data, I explore the world through literature and creative writing.</p>
-                   
                    <a 
                      href={PERSONAL_INFO.blogUrl}
                      target="_blank" 
@@ -1149,7 +1163,6 @@ export default function App() {
                      </p>
                    </a>
                 </section>
-                
                 <section className="bg-gradient-to-br from-slate-900 to-slate-800 p-6 rounded-2xl text-white shadow-lg">
                   <div className="mb-4 text-blue-300"><MapPin size={24} /></div>
                   <h2 className="text-xl font-bold mb-2">Open to Relocation</h2>
@@ -1169,7 +1182,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-blue-100 pb-24 md:pb-0 relative">
+      {/* Modals */}
       {selectedSkill && (<SkillModalContent skill={selectedSkill} onClose={() => setSelectedSkill(null)} />)}
+
       <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200 hidden md:block">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="font-bold text-xl tracking-tight text-slate-900 flex items-center gap-2 cursor-pointer" onClick={() => setActiveSection('home')}>
